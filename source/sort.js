@@ -1,16 +1,9 @@
 'use strict'
 
 const sort = function(str) {
-    var words = str.split(' ');
-    words.forEach(function(element, index) {
-        element = element.toLowerCase();
-        var letters = element.split('');
-        if(letters.length === 0)
-            return;
-        letters.sort();
-        letters[0] = letters[0].toUpperCase();
-        words[index] = letters.join('');
-    });
-    words.sort();
-    return words.join(' ');
+    return str.split(' ').map((element) => { 
+        return element.toLowerCase().split('').sort().join('').replace(/\S/, (match) => { 
+            return match.toUpperCase()
+        });
+    }).sort().join(' ');
 }
