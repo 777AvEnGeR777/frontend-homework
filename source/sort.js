@@ -1,9 +1,14 @@
 'use strict'
 
-const sort = function(str) {
-    return str.split(' ').map((element) => { 
-        return element.toLowerCase().split('').sort().join('').replace(/\S/, (match) => { 
-            return match.toUpperCase()
-        });
-    }).sort().join(' ');
+const sort = (str) => { 
+    if(typeof str != 'string')
+        return '';
+    return str.split(' ')
+              .map((element) =>  element.toLocaleLowerCase()
+                                        .split('')
+                                        .sort((a,b) => a.localeCompare(b))
+                                        .join('')
+                                        .replace(/\S/, (match) => match.toLocaleUpperCase()))
+              .sort((a,b) => a.localeCompare(b))
+              .join(' ');
 }
